@@ -1,0 +1,98 @@
+programa {
+  funcao inicio() {
+    cadeia mapa[10][10]
+    inteiro linha = 0, coluna = 0, pontos = -100
+    inteiro ultimaLinha = 0, ultimaColuna = 0
+    caracter direcao
+
+    // Preenchendo o mapa de jogo com zeros
+    para (inteiro i = 0; i < 10; i++) {
+      para (inteiro j = 0; j < 10; j++) {
+        mapa[i][j] = "😃"
+      }
+    }
+    // Criando posições para os obstáculos
+    mapa[0][4] = "😀"
+    mapa[2][2] = "😀"
+    mapa[4][4] = "😀"
+    mapa[5][4] = "😀"
+    // Definindo a posição inicial da personagem
+    mapa[0][0] = "$"
+
+    // Exibindo o mapa inicial
+    para (inteiro i = 0; i < 10; i++) {
+      para (inteiro j = 0; j < 10; j++) {
+        escreva(mapa[i][j], " ")
+      }
+      escreva("\n")
+    }
+
+    // Loop do jogo
+    enquanto (verdadeiro) {
+      pontos = pontos + 100
+      escreva("Digite o comando: ", "Score: ", pontos)
+      leia(direcao)
+      limpa()
+
+      // Armazenando a posição anterior
+      ultimaLinha = linha
+      ultimaColuna = coluna
+
+      // Verificando qual tecla foi pressionada
+      escolha (direcao) {
+        caso "s": 
+          se (linha < 9) {
+            linha++
+          } senao {
+            linha = 0  // Volta para o início da mesma coluna
+          }
+          pare
+        caso "a": 
+          se (coluna > 0) {
+            coluna--
+          } senao {
+            coluna = 9  // Volta para o final da mesma linha
+          }
+          pare
+        caso "w": 
+          se (linha > 0) {
+            linha--
+          } senao {
+            linha = 9  // Volta para o final da mesma coluna
+          }
+          pare
+        caso "d": 
+          se (coluna < 9) {
+            coluna++
+          } senao {
+            coluna = 0  // Volta para o início da mesma linha
+          }
+          pare
+        caso contrario: 
+          pare
+      }
+
+      // Verificando colisão com obstáculo
+      se (mapa[linha][coluna] == "😀") {
+        escreva("Game over. Pontuação: ", pontos)
+        pare/
+      }
+
+      // Atualizando o mapa
+      mapa[ultimaLinha][ultimaColuna] = "😃"
+      mapa[linha][coluna] = "$"
+
+      // Exibindo o mapa
+      para (inteiro i = 0; i < 10; i++) {
+        para (inteiro j = 0; j < 10; j++) {
+          escreva(mapa[i][j], " ")
+        }
+        escreva("\n")
+      }
+    }
+  }
+}
+
+    
+  }
+}
